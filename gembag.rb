@@ -3,7 +3,10 @@
 require "rbconfig"
 
 rubyabi = RbConfig::CONFIG["ruby_version"]
-target = "#{Dir.pwd}/vendor/bundle"
+# target = "#{Dir.pwd}/vendor/bundle"
+# Using the home directory as the local repository base
+home = ENV["HOME"]
+target = "#{home}/.jruby/vendor/bundle"
 gemdir = "#{target}/#{RUBY_ENGINE}/#{rubyabi}/"
 ENV["GEM_HOME"] = gemdir
 ENV["GEM_PATH"] = ""

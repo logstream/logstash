@@ -73,7 +73,9 @@ setup_vendored_jruby() {
   VENDORED_JRUBY=1
 
   export RUBYLIB="${basedir}/lib"
-  export GEM_HOME="${basedir}/vendor/bundle/${RUBY}/${RUBYVER}"
+  # export GEM_HOME="${basedir}/vendor/bundle/${RUBY}/${RUBYVER}"
+  # Using the home directory as the local repository base
+  export GEM_HOME="$HOME/.jruby/vendor/bundle/${RUBY}/${RUBYVER}"
   export GEM_PATH=
 }
 
@@ -91,9 +93,13 @@ install_deps() {
     if [ -z "$VENDORED_JRUBY" ] ; then
       exec "${RUBYCMD}" "${basedir}/gembag.rb" "${basedir}/logstash.gemspec" "$@"
     else
+      # To replace the rubygems source with the domestic taobao ruby mirror
+      ${JAVACMD} "-jar" "$JRUBY_JAR" "-S" "gem" "sources" "--remove" "https://rubygems.org/"
+      ${JAVACMD} "-jar" "$JRUBY_JAR" "-S" "gem" "sources" "--add" "https://ruby.taobao.org/"
       exec "${JAVACMD}" $JAVA_OPTS "-jar" "$JRUBY_JAR" "${basedir}/gembag.rb" "${basedir}/logstash.gemspec" "$@"
     fi
   else
     echo "Cannot install dependencies; missing logstash.gemspec. This 'deps' command only works from a logstash git clone."
   fi
 }
+
