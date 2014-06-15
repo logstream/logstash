@@ -1,4 +1,6 @@
-source "https://rubygems.org"
+# To replace bundle source with domestic taobao mirror
+source 'https://ruby.taobao.org/'
+#source "https://rubygems.org"
 #gemspec(:name => "logstash", :path => "../")
 
 gemspec = File.join(File.dirname(__FILE__), "..", "logstash.gemspec")
