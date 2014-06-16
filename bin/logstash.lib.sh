@@ -93,9 +93,6 @@ install_deps() {
     if [ -z "$VENDORED_JRUBY" ] ; then
       exec "${RUBYCMD}" "${basedir}/gembag.rb" "${basedir}/logstash.gemspec" "$@"
     else
-      # To replace the rubygems source with the domestic taobao ruby mirror
-      ${JAVACMD} "-jar" "$JRUBY_JAR" "-S" "gem" "sources" "--remove" "https://rubygems.org/"
-      ${JAVACMD} "-jar" "$JRUBY_JAR" "-S" "gem" "sources" "--add" "https://ruby.taobao.org/"
       exec "${JAVACMD}" $JAVA_OPTS "-jar" "$JRUBY_JAR" "${basedir}/gembag.rb" "${basedir}/logstash.gemspec" "$@"
     fi
   else
