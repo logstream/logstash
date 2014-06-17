@@ -18,9 +18,6 @@
         <include>/patterns/</include>
         <include>/spec/</include>
         <include>/vendor/</include>
-        <include>/tools/</include>
-        <include>/*.rb</include>
-        <include>/*.gemspec</include>
       </includes>
       <outputDirectory>/</outputDirectory>
     </fileSet>
