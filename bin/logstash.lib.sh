@@ -73,9 +73,9 @@ setup_vendored_jruby() {
   VENDORED_JRUBY=1
 
   export RUBYLIB="${basedir}/lib"
-  # export GEM_HOME="${basedir}/vendor/bundle/${RUBY}/${RUBYVER}"
+  export GEM_HOME="${basedir}/vendor/bundle/${RUBY}/${RUBYVER}"
   # Using the home directory as the local repository base
-  export GEM_HOME="$HOME/.jruby/vendor/bundle/${RUBY}/${RUBYVER}"
+  #export GEM_HOME="$HOME/.jruby/vendor/bundle/${RUBY}/${RUBYVER}"
   export GEM_PATH=
 }
 
